@@ -1,0 +1,132 @@
+
+//  some Query and operators which can be used with mongodb update commands
+// --------------------------
+// $set	Sets the value of a field in a document.
+// a: await Products.updateOne({brand:"Apple"},{$set:{brand:"Samsung"}})
+
+// $unset	Removes the specified field from a document.
+// a: await Products.updateOne({brand:"Apple"},{$unset:{brand:"Samsung"}})
+
+// $inc	Increments the value of the field by the specified amount.
+// a: await Products.updateOne({brand:"Apple"},{$inc:{price:1000}})
+
+// $mul	Multiplies the value of the field by the specified amount.
+// a: await Products.updateOne({brand:"Apple"},{$mul:{price:2}})
+
+// $rename	Renames a field.
+// a: await Products.updateOne({brand:"Apple"},{$rename:{brand:"company"}})
+// q:why comany in database is comming in quotes
+
+
+// $min	Only updates the field if the specified value is less than the existing field value.
+// a: await Products.updateOne({brand:"Apple"},{$min:{price:1000}})
+
+// $max	Only updates the field if the specified value is greater than the existing field value.
+// a: await Products.updateOne({brand:"Apple"},{$max:{price:1000}})
+
+// $currentDate	Sets the value of a field to current date, either as a Date or a Timestamp.
+// a: await Products.updateOne({brand:"Apple"},{$currentDate:{date:true}})
+
+// $addToSet	Adds elements to an array only if they do not already exist in the set.
+// a: await Products.updateOne({brand:"Apple"},{$addToSet:{images:"https://i.dummyjson.com/data/products/1/1.jpg"}})
+
+// $pop	Removes the first or last item of an array.
+// a: await Products.updateOne({brand:"Apple"},{$pop:{images:1}})
+
+// $pull Removes all array elements that match a specified query.
+// a: await Products.updateOne({brand:"Apple"},{$pull:{images:"https://i.dummyjson.com/data/products/1/1.jpg"}})
+
+// $push Adds an item to an array.
+// a: await Products.updateOne({brand:"Apple"},{$push:{images:"https://i.dummyjson.com/data/products/1/1.jpg"}})
+
+// $each	Modifies the $push and $addToSet operators to append multiple items for array updates.
+// a: await Products.updateOne({brand:"Apple"},{$push:{images:{$each:["https://i.dummyjson.com/data/products/1/1.jpg","https://i.dummyjson.com/data/products/1/2.jpg"]}}})
+
+// $slice	Limits the number of elements projected from an array. Supports skip and limit slices.
+// a: await Products.updateOne({brand:"Apple"},{$push:{images:{$each:["https://i.dummyjson.com/data/products/1/1.jpg","https://i.dummyjson.com/data/products/1/2.jpg"],$slice:2}}})
+
+// $sort	Reorders the elements of an array.
+// a: await Products.updateOne({brand:"Apple"},{$push:{images:{$each:["https://i.dummyjson.com/data/products/1/1.jpg","https://i.dummyjson.com/data/products/1/2.jpg"],$sort:1}}})
+
+// $position	Modifies the $push operator to specify the position in the array to add elements.
+// a: await Products.updateOne({brand:"Apple"},{$push:{images:{$each:["https://i.dummyjson.com/data/products/1/1.jpg","https://i.dummyjson.com/data/products/1/2.jpg"],$position:1}}})
+
+
+// some Query and operators which can be used with mongodb
+// --------------------------
+// $eq	Matches values that are equal to a specified value.
+// a: await Products.find({brand:{$eq:"Apple"}})
+
+// $ne	Matches all values that are not equal to a specified value.
+// a: await Products.find({brand:{$ne:"Apple"}})
+
+// $gt	Matches values that are greater than a specified value.
+// a: await Products.find({price:{$gt:50000}})
+
+// $gte	Matches values that are greater than or equal to a specified value.
+// a: await Products.find({price:{$gte:50000}})
+
+// $lt	Matches values that are less than a specified value.
+// a: await Products.find({price:{$lt:50000}})
+
+// $lte	Matches values that are less than or equal to a specified value.
+// a: await Products.find({price:{$lte:50000}})
+
+// $in	Matches any of the values specified in an array.
+// a: await Products.find({brand:{$in:["Apple","Samsung"]}})
+
+// $nin	Matches none of the values specified in an array.
+// a: await Products.find({brand:{$nin:["Apple","Samsung"]}})
+
+// $and	Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
+// a: await Products.find({$and:[{brand:"Apple"},{price:{$gt:50000}}]})
+
+// $not	Inverts the effect of a query expression and returns documents that do not match the query expression.
+// a: await Products.find({brand:{$not:{$eq:"Apple"}}})
+
+// $nor	Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
+// a: await Products.find({$nor:[{brand:"Apple"},{price:{$gt:50000}}]})
+
+// $or	Joins query clauses with a logical OR returns all documents that match the conditions of either clause.
+// a: await Products.find({$or:[{brand:"Apple"},{price:{$gt:50000}}]})
+
+// $exists	Matches documents that have the specified field.
+// a: await Products.find({brand:{$exists:true}})
+
+// $type	Selects documents if a field is of the specified type.
+// a: await Products.find({brand:{$type:"string"}})
+
+// $mod	Performs a modulo operation on the value of a field and selects documents with a specified result.
+// a: await Products.find({price:{$mod:[5,0]}})
+
+// $regex	Selects documents where values match a specified regular expression.
+// a: await Products.find({brand:{$regex:"^A"}})
+
+// $all	Matches arrays that contain all elements specified in the query.
+// a: await Products.find({brand:{$all:["Apple","Samsung"]}})
+
+// $elemMatch	Selects documents if element in the array field matches all the specified $elemMatch conditions.
+// a: await Products.find({brand:{$elemMatch:{$eq:"Apple"}}})
+
+// $size	Selects documents if the array field is a specified size.
+// a: await Products.find({brand:{$size:5}})
+
+// $slice	Projects a subset of an array.
+// a: await Products.find({brand:{$slice:5}})
+
+// $expr	Allows use of aggregation expressions within the query language.
+// a: await Products.find({$expr:{$gt:["$price","$stock"]}})
+// --------------------------------------------
+
+//1: Projection in mongodb (we can use it in find method to get only required data)
+//  await Products.find({},{ brand: 1, _id: 0 })
+
+//2: Sorting in mongodb (we can use it in find method to get only sorted data)
+// await Products.find({}).sort({ brand: 1 }).collation({ locale: 'en' })
+
+// 3: Pagination in mongodb (we can use it in find method to get only required data)
+// await Products.find({}).skip(skip).limit(limit)
+
+// 4: Counting in mongodb (we can use it in find method to get only count of data)
+// await Products.countDocuments()
+// await Products.countDocuments({brand:"Apple"})
