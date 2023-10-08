@@ -5,7 +5,6 @@ import React from "react";
 const page = async () => {
   const userData: Promise<User[]> = getAllFetchUser();
   const users = await userData;
-  console.log(users);
   return (
     <div className="bg-[#0a0a0a] h-screen p-5 text-white">
       hello
@@ -17,7 +16,7 @@ const page = async () => {
         return (
           <>
             <p key={user.id}>
-              <Link href={`/user/${user.id}`}>{user.name}</Link>
+              <Link href={`/users/${user.id}`}>{user.name}</Link>
             </p>
           </>
         );
