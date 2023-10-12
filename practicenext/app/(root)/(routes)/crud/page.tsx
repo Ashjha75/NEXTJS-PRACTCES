@@ -1,11 +1,11 @@
 "use client";
 import Pagination from "@/app/components/pagination";
+// import { Metadata } from "next";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-
-interface Result {
-  message: string;
-  result: any;
-}
+// export const metaDeta: Metadata = {
+//   title: "Products",
+// };
+// q:what is above line is doing.
 
 const page = () => {
   const [result, setResult] = useState<Result>({ result: [], message: "" });
