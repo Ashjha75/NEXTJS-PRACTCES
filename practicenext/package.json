@@ -23,6 +23,7 @@
     "mongoose": "^7.5.3",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "yup": "^1.3.2"
   }
 }
