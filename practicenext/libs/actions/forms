@@ -1,0 +1,23 @@
+import Yup from 'yup';
+
+const schema = Yup.object().shape({
+    username: Yup.string().required("This field is required"),
+    email: Yup.string().email().required(),
+    password: Yup.string().min(6).required(),
+});
+
+export async function signup(req, res) {
+    // Validate the form data.
+    const data = await schema.validate(req.body);
+    console.log("hello")
+
+    // Create a new user account in the database.
+    // const user = await User.create(data);
+
+    // // Send a confirmation email to the user.
+    // await sendEmail(user.email, 'Welcome to our application!');
+
+    // Redirect the user to the main page of the application.
+    res.redirect('/');
+}
+
